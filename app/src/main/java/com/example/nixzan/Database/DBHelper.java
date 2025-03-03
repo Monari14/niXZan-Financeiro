@@ -54,17 +54,14 @@ public class DBHelper extends SQLiteOpenHelper {
         db.execSQL(CREATE_TABLE_TRANSACAO);
         db.execSQL(CREATE_TABLE_SALDO);
 
-        // Inicializar o saldo com 0,00
         db.execSQL("INSERT INTO " + TABLE_SALDO + " (" + COLUMN_SALDO_VALOR + ") VALUES (0.00);");
     }
     public boolean deletarTransacao(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
         try {
             int rowsAffected = db.delete(TABLE_TRANSACAO, "_id = ?", new String[]{String.valueOf(id)});
-            Log.d("DBHelper", "Linhas afetadas: " + rowsAffected);
-            return rowsAffected > 0; // Retorna true se a exclusão foi bem-sucedida
+            return rowsAffected > 0;
         } catch (Exception e) {
-            Log.e("DBHelper", "Erro ao excluir transação: " + e.getMessage(), e);
             return false;
         } finally {
             db.close();

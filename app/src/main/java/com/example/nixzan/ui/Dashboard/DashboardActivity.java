@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.R;
 import com.example.nixzan.ui.Despesas.DespesasActivity;
-import com.example.nixzan.ui.Historico.HistoricoActivity;
 import com.example.nixzan.ui.Receitas.ReceitasActivity;
+import com.example.nixzan.ui.Historico.HistoricoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 

@@ -17,7 +17,6 @@ import com.example.nixzan.ui.Dashboard.DashboardActivity;
 import com.example.nixzan.ui.Historico.HistoricoActivity;
 import com.example.nixzan.ui.Receitas.ReceitasActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.google.android.material.navigation.NavigationBarView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -69,7 +68,6 @@ public class DespesasActivity extends AppCompatActivity {
             return false;
         });
 
-        // Carregar as despesas e o total gasto
         carregarDespesas();
         carregarTotalGasto();
     }
