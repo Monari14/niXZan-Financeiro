@@ -1,12 +1,15 @@
 package com.example.nixzan.ui.Dashboard;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.R;
 import com.example.nixzan.ui.Despesas.DespesasActivity;
 import com.example.nixzan.ui.Historico.HistoricoActivity;
@@ -15,6 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class DashboardActivity extends AppCompatActivity {
+    private TextView textTotalGasto;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +28,8 @@ public class DashboardActivity extends AppCompatActivity {
 
         String userName = getIntent().getStringExtra("userName");
         TextView textViewNome = findViewById(R.id.textViewNome);
+        textTotalGasto = findViewById(R.id.textTotalGasto);
+        dbHelper = new DBHelper(this);
 
         if (textViewNome != null) {
             textViewNome.setText(userName != null ? userName : "");
@@ -55,5 +62,24 @@ public class DashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+        carregarTotalGasto();
+    }
+    private void carregarTotalGasto() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        double totalGasto = 0;
+
+        String query = "SELECT SUM(valorTransacao) FROM " + DBHelper.TABLE_TRANSACAO +
+                " WHERE despesaOuReceita = 'despesa'";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            totalGasto = cursor.getDouble(0);
+        }
+
+        cursor.close();
+
+        // Atualiza o TextView com o total gasto formatado
+        textTotalGasto.setText(String.format("Gastos R$%.2f", totalGasto));
     }
 }

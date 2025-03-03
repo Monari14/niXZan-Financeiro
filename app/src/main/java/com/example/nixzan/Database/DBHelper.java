@@ -7,41 +7,41 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "finances.db";
-    private static final int DATABASE_VERSION = 2;  // Aumenta a versão do banco para refletir a mudança
+    private static final int DATABASE_VERSION = 3;
 
     // Nome das tabelas
     public static final String TABLE_USER = "user";
-    public static final String TABLE_REVENUE = "revenue";
-    public static final String TABLE_EXPENSE = "expense";
+    public static final String TABLE_TRANSACAO = "transacao";
+    public static final String TABLE_SALDO = "saldo";
 
     // Colunas da tabela "user"
     public static final String COLUMN_USER_NAME = "name";
 
-    // Colunas da tabela "revenue"
-    public static final String COLUMN_REVENUE_DATE = "date";
-    public static final String COLUMN_REVENUE_AMOUNT = "amount";
-    public static final String COLUMN_REVENUE_FROM = "from_person";
+    // Colunas da tabela "transacao"
+    public static final String COLUMN_TRANSACAO_VALOR = "valorTransacao";
+    public static final String COLUMN_TRANSACAO_DESCRICAO = "descricao";
+    public static final String COLUMN_TRANSACAO_METODO = "metodo";
+    public static final String COLUMN_TRANSACAO_DATA = "data";
+    public static final String COLUMN_TRANSACAO_DESPESA_OU_RECEITA = "despesaOuReceita";  // "despesa" ou "receita"
 
-    // Colunas da tabela "expense"
-    public static final String COLUMN_EXPENSE_DATE = "date";
-    public static final String COLUMN_EXPENSE_AMOUNT = "amount";
-    public static final String COLUMN_EXPENSE_DESCRIPTION = "description";  // Descrição da despesa
-    public static final String COLUMN_EXPENSE_CATEGORY = "category";  // Categoria da despesa
+    // Colunas da tabela "saldo"
+    public static final String COLUMN_SALDO_VALOR = "valorAtual";  // Saldo total
 
     // SQL para criar as tabelas
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" +
             COLUMN_USER_NAME + " TEXT NOT NULL);";
 
-    private static final String CREATE_TABLE_REVENUE = "CREATE TABLE " + TABLE_REVENUE + " (" +
-            COLUMN_REVENUE_DATE + " TEXT NOT NULL, " +
-            COLUMN_REVENUE_AMOUNT + " REAL NOT NULL, " +
-            COLUMN_REVENUE_FROM + " TEXT);";
+    private static final String CREATE_TABLE_TRANSACAO = "CREATE TABLE " + TABLE_TRANSACAO + " (" +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_TRANSACAO_VALOR + " REAL NOT NULL, " +
+            COLUMN_TRANSACAO_DESCRICAO + " TEXT, " +
+            COLUMN_TRANSACAO_METODO + " TEXT, " +
+            COLUMN_TRANSACAO_DATA + " TEXT NOT NULL, " +
+            COLUMN_TRANSACAO_DESPESA_OU_RECEITA + " TEXT NOT NULL);";  // Receita ou despesa
 
-    private static final String CREATE_TABLE_EXPENSE = "CREATE TABLE " + TABLE_EXPENSE + " (" +
-            COLUMN_EXPENSE_DATE + " TEXT NOT NULL, " +
-            COLUMN_EXPENSE_AMOUNT + " REAL NOT NULL, " +
-            COLUMN_EXPENSE_DESCRIPTION + " TEXT, " +  // Descrição da despesa
-            COLUMN_EXPENSE_CATEGORY + " TEXT);";  // Categoria da despesa
+    private static final String CREATE_TABLE_SALDO = "CREATE TABLE " + TABLE_SALDO + " (" +
+            "_id INTEGER PRIMARY KEY AUTOINCREMENT, " +
+            COLUMN_SALDO_VALOR + " REAL NOT NULL);";  // Saldo atual
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -50,16 +50,22 @@ public class DBHelper extends SQLiteOpenHelper {
     @Override
     public void onCreate(SQLiteDatabase db) {
         db.execSQL(CREATE_TABLE_USER);
-        db.execSQL(CREATE_TABLE_REVENUE);
-        db.execSQL(CREATE_TABLE_EXPENSE);
+        db.execSQL(CREATE_TABLE_TRANSACAO);
+        db.execSQL(CREATE_TABLE_SALDO);
+
+        // Inicializar o saldo com 0,00
+        db.execSQL("INSERT INTO " + TABLE_SALDO + " (" + COLUMN_SALDO_VALOR + ") VALUES (0.00);");
     }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        // Fazendo a atualização, caso a versão do banco de dados seja maior
-        if (oldVersion < 2) {
-            db.execSQL("ALTER TABLE " + TABLE_EXPENSE + " ADD COLUMN " + COLUMN_EXPENSE_DESCRIPTION + " TEXT;");
-            db.execSQL("ALTER TABLE " + TABLE_EXPENSE + " ADD COLUMN " + COLUMN_EXPENSE_CATEGORY + " TEXT;");
+        if (oldVersion < 3) {
+            // Adicionando a tabela de transações
+            db.execSQL(CREATE_TABLE_TRANSACAO);
+            // Adicionando a tabela de saldo
+            db.execSQL(CREATE_TABLE_SALDO);
+            // Inicializa o saldo com 0,00
+            db.execSQL("INSERT INTO " + TABLE_SALDO + " (" + COLUMN_SALDO_VALOR + ") VALUES (0.00);");
         }
     }
 }

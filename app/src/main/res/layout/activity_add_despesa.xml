@@ -78,7 +78,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btAddDespesa"
+        android:id="@+id/btAddDespesaAdd"
         android:layout_width="60dp"
         android:layout_height="60dp"
         android:backgroundTint="#E33838"
