@@ -25,7 +25,7 @@ public class AddDespesaActivity extends AppCompatActivity {
 
     private EditText editValorAdd, editDescricao;
     private Spinner spinnerCategoria;
-    private Button btSalvarDespesa;
+    private Button btSalvarDespesa, btRetornar;
     private DBHelper dbHelper;
 
     @Override
@@ -39,12 +39,21 @@ public class AddDespesaActivity extends AppCompatActivity {
         editDescricao = findViewById(R.id.editDescricaoReceita);
         spinnerCategoria = findViewById(R.id.spinnerCategoriaReceita);
         btSalvarDespesa = findViewById(R.id.btAddDespesaAdd);
+        btRetornar = findViewById(R.id.btRetornar);
 
-        // Botão para salvar a despesa
+
         btSalvarDespesa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 salvarDespesa();
+            }
+        });
+
+        btRetornar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddDespesaActivity.this, DespesasActivity.class));
+                finish();
             }
         });
     }

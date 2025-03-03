@@ -59,6 +59,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btRetornar2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#46F079"
+        android:textAlignment="center"
+        android:textSize="8sp"
+        app:icon="?attr/homeAsUpIndicator"
+        app:layout_constraintBottom_toTopOf="@+id/editValorReceitaAdd"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/editValorReceitaAdd"
         android:layout_width="wrap_content"

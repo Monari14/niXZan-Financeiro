@@ -15,6 +15,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.R;
+import com.example.nixzan.ui.Despesas.AddDespesaActivity;
 import com.example.nixzan.ui.Despesas.DespesasActivity;
 
 import java.text.SimpleDateFormat;
@@ -24,7 +25,7 @@ public class AddReceitaActivity extends AppCompatActivity {
 
     private EditText editValorReceitaAdd, editDescricaoReceita;
     private Spinner spinnerCategoriaReceita;
-    private Button btSalvarReceita;
+    private Button btSalvarReceita, btRetornar;
     private DBHelper dbHelper;
 
     @Override
@@ -38,11 +39,19 @@ public class AddReceitaActivity extends AppCompatActivity {
         editDescricaoReceita = findViewById(R.id.editDescricaoReceita);
         spinnerCategoriaReceita = findViewById(R.id.spinnerCategoriaReceita);
         btSalvarReceita = findViewById(R.id.btAddReceitaAdd);
+        btRetornar = findViewById(R.id.btRetornar);
 
         btSalvarReceita.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 salvarReceita();
+            }
+        });
+        btRetornar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(AddReceitaActivity.this, ReceitasAdapter.class));
+                finish();
             }
         });
     }
