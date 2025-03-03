@@ -58,9 +58,8 @@ public class MainActivity extends AppCompatActivity {
 
     private void navigateToDashboard(String nome) {
         Intent intent = new Intent(MainActivity.this, DashboardActivity.class);
-        // Passar o nome para a DashboardActivity
         intent.putExtra("userName", nome);
         startActivity(intent);
-        finish();  // Finalizar a MainActivity para não voltar a ela
+        finish();
     }
 }

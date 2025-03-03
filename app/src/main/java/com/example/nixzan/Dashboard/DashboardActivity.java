@@ -2,19 +2,37 @@ package com.example.nixzan.Dashboard;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nixzan.MainActivity;
 import com.example.nixzan.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class DashboardActivity extends AppCompatActivity {
+    private Button btAddGanho;
+    private Button btAddGasto;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+        String userName = getIntent().getStringExtra("userName");
+        TextView textViewNome = findViewById(R.id.textViewNome);
+        if (userName != null) {
+            textViewNome.setText(userName);
+        } else {
+            textViewNome.setText("");
+        }
+        btAddGanho = findViewById(R.id.btAddGanho);
+        btAddGasto = findViewById(R.id.btAddGasto);
+
+
 
         // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -42,5 +60,22 @@ public class DashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+
+        btAddGanho.setOnClickListener(v -> {
+            navigateToReceitas();
+        });
+        btAddGasto.setOnClickListener(v -> {
+            navigateToDespesas();
+        });
+    }
+    private void navigateToReceitas() {
+        Intent intent = new Intent(DashboardActivity.this, ReceitasActivity.class);
+        startActivity(intent);
+        finish();
+    }
+    private void navigateToDespesas() {
+        Intent intent = new Intent(DashboardActivity.this, DespesasActivity.class);
+        startActivity(intent);
+        finish();
     }
 }
