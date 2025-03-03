@@ -18,7 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class DashboardActivity extends AppCompatActivity {
-    private TextView textTotalGasto, textTotalGanho;
+    private TextView textTotalGasto, textTotalGanho, textSaldo;
 
     private DBHelper dbHelper;
 
@@ -31,6 +31,7 @@ public class DashboardActivity extends AppCompatActivity {
         TextView textViewNome = findViewById(R.id.textViewNome);
         textTotalGasto = findViewById(R.id.textTotalGasto);
         textTotalGanho = findViewById(R.id.textTotalGanho);
+        textSaldo = findViewById(R.id.textSaldo);
         dbHelper = new DBHelper(this);
 
         if (textViewNome != null) {
@@ -66,6 +67,7 @@ public class DashboardActivity extends AppCompatActivity {
         });
         carregarTotalGasto();
         carregarTotalGanho();
+        carregarSaldo();
     }
     private void carregarTotalGasto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -103,4 +105,20 @@ public class DashboardActivity extends AppCompatActivity {
 
         textTotalGanho.setText(String.format("Ganhos R$%.2f", totalGanho));
     }
+
+    private void carregarSaldo() {
+        carregarTotalGanho();
+        carregarTotalGasto();
+
+        // Obtem os valores já atualizados nos TextViews
+        double totalGanho = Double.parseDouble(textTotalGanho.getText().toString().replace("Ganhos R$", "").replace(",", "."));
+        double totalGasto = Double.parseDouble(textTotalGasto.getText().toString().replace("Gastos R$", "").replace(",", "."));
+
+        // Calcula o saldo
+        double saldo = totalGanho - totalGasto;
+
+        // Atualiza o TextView do saldo
+        textSaldo.setText(String.format("Saldo R$%.2f", saldo));
+    }
+
 }

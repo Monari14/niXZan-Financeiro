@@ -1,12 +1,16 @@
 package com.example.nixzan.ui.Despesas;
 
 import android.content.Intent;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.widget.Button;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.R;
 import com.example.nixzan.ui.Dashboard.DashboardActivity;
 import com.example.nixzan.ui.Historico.HistoricoActivity;
@@ -15,8 +19,9 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class DespesasActivity extends AppCompatActivity {
-
+    private TextView textTotalGasto;
     private Button btAddDespesa;
+    private DBHelper dbHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +31,8 @@ public class DespesasActivity extends AppCompatActivity {
         // Botão para adicionar despesa
         btAddDespesa = findViewById(R.id.btAddDespesa);
         btAddDespesa.setOnClickListener(v -> navigateToAddDespesas());
+        textTotalGasto = findViewById(R.id.textTotalGasto);
+        dbHelper = new DBHelper(this);
 
         // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -54,8 +61,23 @@ public class DespesasActivity extends AppCompatActivity {
                 return false;
             }
         });
+        carregarTotalGasto();
     }
+    private void carregarTotalGasto() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        double totalGasto = 0;
 
+        String query = "SELECT SUM(valorTransacao) FROM " + DBHelper.TABLE_TRANSACAO +
+                " WHERE despesaOuReceita = 'despesa'";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            totalGasto = cursor.getDouble(0);
+        }
+        cursor.close();
+        textTotalGasto.setText(String.format("Total Gasto R$%.2f", totalGasto));
+    }
     private void navigateToAddDespesas() {
         startActivity(new Intent(DespesasActivity.this, AddDespesaActivity.class));
         finish();

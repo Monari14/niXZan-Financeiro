@@ -56,6 +56,12 @@ public class DBHelper extends SQLiteOpenHelper {
         // Inicializar o saldo com 0,00
         db.execSQL("INSERT INTO " + TABLE_SALDO + " (" + COLUMN_SALDO_VALOR + ") VALUES (0.00);");
     }
+    // No DBHelper
+    public void deletarTransacao(int id) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        db.delete(TABLE_TRANSACAO, "id = ?", new String[]{String.valueOf(id)});
+        db.close();
+    }
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
