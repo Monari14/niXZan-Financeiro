@@ -56,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/view4" />
 
     <TextView
-        android:id="@+id/textHistorico"
+        android:id="@+id/textTotalGanho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ganhos R$0,00"

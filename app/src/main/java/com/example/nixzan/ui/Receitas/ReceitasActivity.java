@@ -2,6 +2,8 @@ package com.example.nixzan.ui.Receitas;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -14,14 +16,19 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class ReceitasActivity extends AppCompatActivity {
 
+    private Button btAddReceita;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receitas);
 
+        // Botão para adicionar despesa
+        btAddReceita = findViewById(R.id.btAddReceita);
+        btAddReceita.setOnClickListener(v -> navigateToAddReceita());
+
         // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
-
         bottomNavigationView.setSelectedItemId(R.id.nav_receitas);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -47,5 +54,10 @@ public class ReceitasActivity extends AppCompatActivity {
                 return false;
             }
         });
+    }
+
+    private void navigateToAddReceita() {
+        startActivity(new Intent(ReceitasActivity.this, AddReceitaActivity.class));
+        finish();
     }
 }

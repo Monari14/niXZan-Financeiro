@@ -58,5 +58,6 @@ public class DespesasActivity extends AppCompatActivity {
 
     private void navigateToAddDespesas() {
         startActivity(new Intent(DespesasActivity.this, AddDespesaActivity.class));
+        finish();
     }
 }

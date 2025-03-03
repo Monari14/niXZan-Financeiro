@@ -1,6 +1,7 @@
 package com.example.nixzan.ui.Despesas;
 
 import android.content.ContentValues;
+import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
@@ -14,6 +15,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.R;
+import com.example.nixzan.ui.Receitas.AddReceitaActivity;
+import com.example.nixzan.ui.Receitas.ReceitasActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -33,8 +36,8 @@ public class AddDespesaActivity extends AppCompatActivity {
         // Inicializa os componentes
         dbHelper = new DBHelper(this);
         editValorAdd = findViewById(R.id.editValorAdd);
-        editDescricao = findViewById(R.id.editDescricao);
-        spinnerCategoria = findViewById(R.id.spinnerCategoria);
+        editDescricao = findViewById(R.id.editDescricaoReceita);
+        spinnerCategoria = findViewById(R.id.spinnerCategoriaReceita);
         btSalvarDespesa = findViewById(R.id.btAddDespesaAdd);
 
         // Botão para salvar a despesa
@@ -96,8 +99,8 @@ public class AddDespesaActivity extends AppCompatActivity {
         if (result != -1) {
             atualizarSaldo(valor);
             Toast.makeText(this, "Sucesso!", Toast.LENGTH_SHORT).show();
-            finish(); // Fecha a tela e volta para DespesasActivity
-        } else {
+            startActivity(new Intent(AddDespesaActivity.this, DespesasActivity.class));
+            finish();        } else {
             Toast.makeText(this, "Erro!", Toast.LENGTH_SHORT).show();
         }
     }

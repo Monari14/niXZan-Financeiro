@@ -18,7 +18,8 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class DashboardActivity extends AppCompatActivity {
-    private TextView textTotalGasto;
+    private TextView textTotalGasto, textTotalGanho;
+
     private DBHelper dbHelper;
 
     @Override
@@ -29,6 +30,7 @@ public class DashboardActivity extends AppCompatActivity {
         String userName = getIntent().getStringExtra("userName");
         TextView textViewNome = findViewById(R.id.textViewNome);
         textTotalGasto = findViewById(R.id.textTotalGasto);
+        textTotalGanho = findViewById(R.id.textTotalGanho);
         dbHelper = new DBHelper(this);
 
         if (textViewNome != null) {
@@ -63,6 +65,7 @@ public class DashboardActivity extends AppCompatActivity {
             }
         });
         carregarTotalGasto();
+        carregarTotalGanho();
     }
     private void carregarTotalGasto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -81,5 +84,23 @@ public class DashboardActivity extends AppCompatActivity {
 
         // Atualiza o TextView com o total gasto formatado
         textTotalGasto.setText(String.format("Gastos R$%.2f", totalGasto));
+    }
+
+    private void carregarTotalGanho() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        double totalGanho = 0;
+
+        String query = "SELECT SUM(valorTransacao) FROM " + DBHelper.TABLE_TRANSACAO +
+                " WHERE despesaOuReceita = 'receita'";
+
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            totalGanho = cursor.getDouble(0);
+        }
+
+        cursor.close();
+
+        textTotalGanho.setText(String.format("Ganhos R$%.2f", totalGanho));
     }
 }

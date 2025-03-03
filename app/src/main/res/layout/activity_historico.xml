@@ -12,12 +12,12 @@
         android:layout_height="4dp"
         android:layout_margin="25dp"
         android:background="#E9E9E9"
-        app:layout_constraintBottom_toBottomOf="@+id/textHistorico"
+        app:layout_constraintBottom_toBottomOf="@+id/textTotalGanho"
         app:layout_constraintTop_toTopOf="@+id/listView"
         tools:layout_editor_absoluteX="0dp" />
 
     <TextView
-        android:id="@+id/textHistorico"
+        android:id="@+id/textTotalGanho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Histórico de Transações"
@@ -51,7 +51,7 @@
         android:layout_width="406dp"
         android:layout_height="557dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@+id/textHistorico"
+        app:layout_constraintTop_toBottomOf="@+id/textTotalGanho"
         tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
