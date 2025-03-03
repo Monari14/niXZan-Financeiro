@@ -72,7 +72,6 @@ public class DespesasActivity extends AppCompatActivity {
         carregarTotalGasto();
     }
 
-    // Método para carregar apenas as transações do tipo "despesa"
     private void carregarDespesas() {
         transacoes = new ArrayList<>();
         SQLiteDatabase db = dbHelper.getReadableDatabase();
@@ -99,7 +98,6 @@ public class DespesasActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    // Método para carregar o total gasto em despesas
     private void carregarTotalGasto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         double totalGasto = 0;

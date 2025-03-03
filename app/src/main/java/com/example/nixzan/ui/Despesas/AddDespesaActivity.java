@@ -15,8 +15,6 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.R;
-import com.example.nixzan.ui.Receitas.AddReceitaActivity;
-import com.example.nixzan.ui.Receitas.ReceitasActivity;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

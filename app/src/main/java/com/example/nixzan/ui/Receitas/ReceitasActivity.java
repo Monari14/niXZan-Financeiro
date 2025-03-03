@@ -34,7 +34,6 @@ public class ReceitasActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_receitas);
 
-        // Inicializando os componentes da UI
         btAddReceita = findViewById(R.id.btAddReceita);
         textTotalGanho = findViewById(R.id.textTotalGanho);
         listView = findViewById(R.id.listView);
@@ -43,7 +42,6 @@ public class ReceitasActivity extends AppCompatActivity {
 
         btAddReceita.setOnClickListener(v -> navigateToAddReceitas());
 
-        // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
         bottomNavigationView.setSelectedItemId(R.id.nav_receitas);
 
@@ -91,7 +89,6 @@ public class ReceitasActivity extends AppCompatActivity {
         cursor.close();
         db.close();
 
-        // Cria o adapter e configura na ListView
         adapter = new ReceitasAdapter(this, transacoes, dbHelper, this::carregarReceitas);
         listView.setAdapter(adapter);
     }
