@@ -7,7 +7,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "finances.db";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 2;  // Aumenta a versão do banco para refletir a mudança
 
     // Nome das tabelas
     public static final String TABLE_USER = "user";
@@ -25,7 +25,8 @@ public class DBHelper extends SQLiteOpenHelper {
     // Colunas da tabela "expense"
     public static final String COLUMN_EXPENSE_DATE = "date";
     public static final String COLUMN_EXPENSE_AMOUNT = "amount";
-    public static final String COLUMN_EXPENSE_TO = "to_person";
+    public static final String COLUMN_EXPENSE_DESCRIPTION = "description";  // Descrição da despesa
+    public static final String COLUMN_EXPENSE_CATEGORY = "category";  // Categoria da despesa
 
     // SQL para criar as tabelas
     private static final String CREATE_TABLE_USER = "CREATE TABLE " + TABLE_USER + " (" +
@@ -39,7 +40,8 @@ public class DBHelper extends SQLiteOpenHelper {
     private static final String CREATE_TABLE_EXPENSE = "CREATE TABLE " + TABLE_EXPENSE + " (" +
             COLUMN_EXPENSE_DATE + " TEXT NOT NULL, " +
             COLUMN_EXPENSE_AMOUNT + " REAL NOT NULL, " +
-            COLUMN_EXPENSE_TO + " TEXT);";
+            COLUMN_EXPENSE_DESCRIPTION + " TEXT, " +  // Descrição da despesa
+            COLUMN_EXPENSE_CATEGORY + " TEXT);";  // Categoria da despesa
 
     public DBHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -54,9 +56,10 @@ public class DBHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_USER);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_REVENUE);
-        db.execSQL("DROP TABLE IF EXISTS " + TABLE_EXPENSE);
-        onCreate(db);
+        // Fazendo a atualização, caso a versão do banco de dados seja maior
+        if (oldVersion < 2) {
+            db.execSQL("ALTER TABLE " + TABLE_EXPENSE + " ADD COLUMN " + COLUMN_EXPENSE_DESCRIPTION + " TEXT;");
+            db.execSQL("ALTER TABLE " + TABLE_EXPENSE + " ADD COLUMN " + COLUMN_EXPENSE_CATEGORY + " TEXT;");
+        }
     }
 }

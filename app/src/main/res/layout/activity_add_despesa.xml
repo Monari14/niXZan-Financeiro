@@ -6,7 +6,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <!-- View (fundo vermelho) -->
     <View
         android:id="@+id/view2"
         android:layout_width="match_parent"
@@ -16,7 +15,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- CalendarView -->
     <CalendarView
         android:id="@+id/calendarView"
         android:layout_width="match_parent"
@@ -25,9 +23,8 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/view2" />
 
-    <!-- TextInputLayout com TextInputEditText -->
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout"
+        android:id="@+id/editDescricaoLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,12 +32,21 @@
         app:layout_constraintTop_toBottomOf="@id/calendarView">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editDescricao"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Descrição" />
     </com.google.android.material.textfield.TextInputLayout>
 
-    <!-- TextView de "R$" -->
+    <Spinner
+        android:id="@+id/spinnerCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:entries="@array/categorias_array"
+        app:layout_constraintTop_toBottomOf="@id/editDescricaoLayout"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <TextView
         android:id="@+id/textRs"
         android:layout_width="wrap_content"
@@ -54,10 +60,10 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <!-- EditText para valor -->
     <EditText
         android:id="@+id/editValorAdd"
         android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
         android:backgroundTint="#E33838"
         android:fontFamily="sans-serif"
         android:hint="0,00"
@@ -71,4 +77,20 @@
         app:layout_constraintStart_toEndOf="@id/textRs"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/btAddDespesa"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:backgroundTint="#E33838"
+        android:insetTop="0dp"
+        android:insetBottom="0dp"
+        android:text="+"
+        android:textAlignment="center"
+        android:textColor="#FFFFFF"
+        android:textSize="24sp"
+        android:typeface="monospace"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerCategoria" />
 </androidx.constraintlayout.widget.ConstraintLayout>
