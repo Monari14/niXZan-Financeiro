@@ -2,14 +2,13 @@ package com.example.nixzan;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.nixzan.Dashboard.DashboardActivity;
+import com.example.nixzan.ui.Dashboard.DashboardActivity;
 import com.example.nixzan.Database.UserData;
 
 public class MainActivity extends AppCompatActivity {

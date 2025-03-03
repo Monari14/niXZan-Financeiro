@@ -1,28 +1,28 @@
-package com.example.nixzan.Dashboard;
+package com.example.nixzan.ui.Receitas;
 
 import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.nixzan.Dashboard.DashboardActivity;
-import com.example.nixzan.Dashboard.ReceitasActivity;
 import com.example.nixzan.R;
+import com.example.nixzan.ui.Dashboard.DashboardActivity;
+import com.example.nixzan.ui.Despesas.DespesasActivity;
+import com.example.nixzan.ui.Historico.HistoricoActivity;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class DespesasActivity extends AppCompatActivity {
+public class ReceitasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_despesas);
+        setContentView(R.layout.activity_receitas);
 
         // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Marcar o ícone de Despesas como selecionado inicialmente
-        bottomNavigationView.setSelectedItemId(R.id.nav_despesas);
+        bottomNavigationView.setSelectedItemId(R.id.nav_receitas);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -30,15 +30,18 @@ public class DespesasActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_dashboard) {
-                    // Quando clicar em "Dashboard", abre a tela de Dashboard
-                    startActivity(new Intent(DespesasActivity.this, DashboardActivity.class));
+                    startActivity(new Intent(ReceitasActivity.this, DashboardActivity.class));
+                    finish();
                     return true;
-                } else if (id == R.id.nav_receitas) {
-                    // Quando clicar em "Receitas", abre a tela de Receitas
-                    startActivity(new Intent(DespesasActivity.this, ReceitasActivity.class));
+                } else if (id == R.id.nav_historico) {
+                    startActivity(new Intent(ReceitasActivity.this, HistoricoActivity.class));
+                    finish();
                     return true;
                 } else if (id == R.id.nav_despesas) {
-                    // Se já estamos na tela de Despesas, não faz nada
+                    startActivity(new Intent(ReceitasActivity.this, DespesasActivity.class));
+                    finish();
+                    return true;
+                } else if (id == R.id.nav_receitas) {
                     return true;
                 }
                 return false;

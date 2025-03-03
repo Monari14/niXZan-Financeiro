@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Dashboard.DashboardActivity">
+    tools:context=".ui.Dashboard.DashboardActivity">
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
@@ -14,26 +14,12 @@
 
     <View
         android:id="@+id/view5"
-        android:layout_width="414dp"
-        android:layout_height="400dp"
+        android:layout_width="416dp"
+        android:layout_height="622dp"
         android:layout_margin="25dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@+id/view3"
-        tools:layout_editor_absoluteX="-2dp" />
-
-    <Button
-        android:id="@+id/btAddGasto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="@color/verde_personalizado"
-        android:text="Adicionar Gasto"
-        android:textColorLink="#DB0505"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textSaldo2"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
+        app:layout_constraintBottom_toBottomOf="@+id/view"
+        tools:layout_editor_absoluteX="-6dp" />
 
     <View
         android:id="@+id/view3"
@@ -58,7 +44,7 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <TextView
-        android:id="@+id/textSaldo3"
+        android:id="@+id/textTotalGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="12dp"
@@ -70,7 +56,7 @@
         app:layout_constraintTop_toTopOf="@+id/view4" />
 
     <TextView
-        android:id="@+id/textSaldo2"
+        android:id="@+id/textHistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Ganhos R$0,00"
@@ -116,28 +102,6 @@
         app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/view4" />
-
-    <Button
-        android:id="@+id/btAddGanho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:background="#4CAF50"
-        android:backgroundTint="#4CAF50"
-        android:foregroundTint="#4CAF50"
-        android:shadowColor="#4CAF50"
-        android:text="Adicionar Ganho"
-        android:textColor="#FFFFFF"
-        android:textColorHighlight="#4CAF50"
-        android:textColorHint="#4CAF50"
-        android:textColorLink="#4CAF50"
-        android:textSize="16sp"
-        app:iconTint="#4CAF50"
-        app:layout_constraintBottom_toBottomOf="@+id/view5"
-        app:layout_constraintEnd_toStartOf="@+id/textSaldo3"
-        app:layout_constraintStart_toStartOf="@+id/view"
-        app:layout_constraintTop_toTopOf="@+id/view4"
-        app:rippleColor="#4CAF50"
-        app:strokeColor="#4CAF50" />
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

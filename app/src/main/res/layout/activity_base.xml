@@ -6,7 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".BaseActivity">
 
-    <!-- FrameLayout para carregar os fragmentos -->
     <FrameLayout
         android:id="@+id/container_fragment"
         android:layout_width="match_parent"

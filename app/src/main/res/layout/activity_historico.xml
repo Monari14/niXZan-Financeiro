@@ -4,11 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Receitas.ReceitasActivity">
-
-    <!-- Seu conteúdo da tela -->
-
-    <!-- Navigation Bar -->
+    tools:context=".ui.Historico.HistoricoActivity">
 
     <View
         android:id="@+id/view7"
@@ -24,8 +20,8 @@
         android:id="@+id/textHistorico"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Total Ganho R$0,00"
-        android:textColor="#43AB47"
+        android:text="Histórico de Transações"
+        android:textColor="#404040"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@+id/textName"
         app:layout_constraintStart_toStartOf="@+id/textName"
@@ -45,37 +41,17 @@
         android:id="@+id/bottom_navigation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:background="#46F079"
-        app:itemIconTint="@color/material_dynamic_neutral20"
-        app:itemTextColor="#525252"
+        app:menu="@menu/bottom_nav_menu"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_menu" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <ListView
         android:id="@+id/listView"
         android:layout_width="406dp"
-        android:layout_height="454dp"
+        android:layout_height="557dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="2dp" />
-
-    <Button
-        android:id="@+id/btAddReceita"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:backgroundTint="#46F079"
-        android:insetTop="0dp"
-        android:insetBottom="0dp"
-        android:text="+"
-        android:textAlignment="center"
-        android:textColor="#000000"
-        android:textSize="24sp"
-        android:typeface="monospace"
-        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/listView" />
+        app:layout_constraintTop_toBottomOf="@+id/textHistorico"
+        tools:layout_editor_absoluteX="1dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
