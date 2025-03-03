@@ -24,7 +24,6 @@
             </intent-filter>
         </activity>
 
-        <!-- Declaração da DashboardActivity -->
         <activity
             android:name=".ui.Dashboard.DashboardActivity"
             android:exported="true">

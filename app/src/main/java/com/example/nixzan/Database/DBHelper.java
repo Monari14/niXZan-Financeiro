@@ -3,6 +3,7 @@ package com.example.nixzan.Database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
@@ -56,12 +57,20 @@ public class DBHelper extends SQLiteOpenHelper {
         // Inicializar o saldo com 0,00
         db.execSQL("INSERT INTO " + TABLE_SALDO + " (" + COLUMN_SALDO_VALOR + ") VALUES (0.00);");
     }
-    // No DBHelper
-    public void deletarTransacao(int id) {
+    public boolean deletarTransacao(int id) {
         SQLiteDatabase db = this.getWritableDatabase();
-        db.delete(TABLE_TRANSACAO, "id = ?", new String[]{String.valueOf(id)});
-        db.close();
+        try {
+            int rowsAffected = db.delete(TABLE_TRANSACAO, "_id = ?", new String[]{String.valueOf(id)});
+            Log.d("DBHelper", "Linhas afetadas: " + rowsAffected);
+            return rowsAffected > 0; // Retorna true se a exclusão foi bem-sucedida
+        } catch (Exception e) {
+            Log.e("DBHelper", "Erro ao excluir transação: " + e.getMessage(), e);
+            return false;
+        } finally {
+            db.close();
+        }
     }
+
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

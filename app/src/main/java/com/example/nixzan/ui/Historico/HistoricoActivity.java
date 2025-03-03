@@ -91,14 +91,11 @@ public class HistoricoActivity extends AppCompatActivity {
         cursor.close();
         db.close();
 
-        adapter = new TransacaoAdapter(this, transacoes, dbHelper, this::atualizarValores);
+        adapter = new TransacaoAdapter(this, transacoes, dbHelper, this::carregarTransacoes);
         listView.setAdapter(adapter);
     }
 
-    private void atualizarValores() {
-        carregarTransacoes();
-    }
-    private void carregarTotalGasto() {
+    public void carregarTotalGasto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         double totalGasto = 0;
 
@@ -117,7 +114,7 @@ public class HistoricoActivity extends AppCompatActivity {
         textTotalGasto.setText(String.format("Total R$%.2f", totalGasto));
     }
 
-    private void carregarTotalGanho() {
+    public void carregarTotalGanho() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         double totalGanho = 0;
 

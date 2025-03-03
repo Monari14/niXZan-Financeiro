@@ -1,4 +1,4 @@
-package com.example.nixzan.ui.Historico;
+package com.example.nixzan.ui.Despesas;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -11,17 +11,18 @@ import android.widget.TextView;
 import com.example.nixzan.Database.DBHelper;
 import com.example.nixzan.Model.Transacao;
 import com.example.nixzan.R;
+import com.example.nixzan.ui.Historico.HistoricoActivity;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class TransacaoAdapter extends BaseAdapter {
+public class DespesasAdapter extends BaseAdapter {
     private Context context;
     private List<Transacao> transacoes;
     private DBHelper dbHelper;
     private Runnable atualizarValores;
 
-    public TransacaoAdapter(Context context, List<Transacao> transacoes, DBHelper dbHelper, Runnable atualizarValores) {
+    public DespesasAdapter(Context context, List<Transacao> transacoes, DBHelper dbHelper, Runnable atualizarValores) {
         this.context = context;
         this.transacoes = transacoes;
         this.dbHelper = dbHelper;
@@ -54,14 +55,10 @@ public class TransacaoAdapter extends BaseAdapter {
         MaterialButton excluirBtn = convertView.findViewById(R.id.btnExcluir);
 
         Transacao transacao = transacoes.get(position);
-        descricao.setText(transacao.getDescricao() + " | " + transacao.getData());
-        valor.setText(String.format("R$ %.2f", transacao.getValor()));
-
-        // Definir a cor do fundo conforme o tipo de transação
-        if ("receita".equalsIgnoreCase(transacao.getDespesaOuReceita())) {
-            convertView.setBackgroundColor(Color.parseColor("#92f5af")); // Verde claro para receita
-        } else {
-            convertView.setBackgroundColor(Color.parseColor("#ed7171")); // Vermelho claro para despesa
+        if ("despesa".equalsIgnoreCase(transacao.getDespesaOuReceita())) {
+            descricao.setText(transacao.getDescricao() + " | " + transacao.getData());
+            valor.setText(String.format("R$ %.2f", transacao.getValor()));
+            convertView.setBackgroundColor(Color.parseColor("#ed7171"));
         }
 
         excluirBtn.setOnClickListener(v -> {
@@ -74,11 +71,8 @@ public class TransacaoAdapter extends BaseAdapter {
             if (context instanceof HistoricoActivity) {
                 HistoricoActivity historicoActivity = (HistoricoActivity) context;
                 historicoActivity.carregarTotalGasto();
-                historicoActivity.carregarTotalGanho();
             }
         });
-
-
         return convertView;
     }
 }

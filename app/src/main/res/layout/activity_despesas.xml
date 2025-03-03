@@ -6,16 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.Despesas.DespesasActivity">
 
-    <View
-        android:id="@+id/view6"
-        android:layout_width="412dp"
-        android:layout_height="4dp"
-        android:layout_margin="25dp"
-        android:background="#E9E9E9"
-        app:layout_constraintBottom_toTopOf="@+id/listView"
-        app:layout_constraintTop_toBottomOf="@+id/textTotalGasto"
-        tools:layout_editor_absoluteX="0dp" />
-
     <TextView
         android:id="@+id/textTotalGasto"
         android:layout_width="wrap_content"
