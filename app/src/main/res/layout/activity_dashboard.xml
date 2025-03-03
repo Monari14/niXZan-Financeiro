@@ -5,7 +5,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Dashboard.DashboardActivity">
-
     <View
         android:id="@+id/view"
         android:layout_width="wrap_content"
@@ -19,7 +18,7 @@
         android:layout_height="400dp"
         android:layout_margin="25dp"
         android:background="#FFFFFF"
-        app:layout_constraintBottom_toBottomOf="@+id/view"
+        app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
         app:layout_constraintTop_toBottomOf="@+id/view3"
         tools:layout_editor_absoluteX="-2dp" />
 
@@ -140,5 +139,14 @@
         app:rippleColor="#4CAF50"
         app:strokeColor="#4CAF50" />
 
+    <!-- Bottom Navigation -->
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_navigation"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:menu="@menu/bottom_nav_menu"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

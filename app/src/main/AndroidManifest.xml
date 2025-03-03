@@ -28,7 +28,8 @@
             android:name=".Dashboard.DashboardActivity"
             android:exported="true">
         </activity>
-
+        <activity android:name=".Dashboard.ReceitasActivity" />
+        <activity android:name=".Dashboard.DespesasActivity" />
 
     </application>
 

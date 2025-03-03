@@ -9,18 +9,18 @@ import com.example.nixzan.R;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
-public class DashboardActivity extends AppCompatActivity {
+public class ReceitasActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_dashboard);
+        setContentView(R.layout.activity_receitas);
 
         // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
-        // Marcar o ícone de Dashboard como selecionado inicialmente
-        bottomNavigationView.setSelectedItemId(R.id.nav_dashboard);
+        // Marcar o ícone de Receitas como selecionado inicialmente
+        bottomNavigationView.setSelectedItemId(R.id.nav_receitas);
 
         bottomNavigationView.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -28,15 +28,15 @@ public class DashboardActivity extends AppCompatActivity {
                 int id = item.getItemId();
 
                 if (id == R.id.nav_dashboard) {
-                    // Se já estamos na tela de Dashboard, não faz nada
+                    // Quando clicar em "Dashboard", abre a tela de Dashboard
+                    startActivity(new Intent(ReceitasActivity.this, DashboardActivity.class));
                     return true;
                 } else if (id == R.id.nav_receitas) {
-                    // Quando clicar em "Receitas", abre a tela de Receitas
-                    startActivity(new Intent(DashboardActivity.this, ReceitasActivity.class));
+                    // Se já estamos na tela de Receitas, não faz nada
                     return true;
                 } else if (id == R.id.nav_despesas) {
                     // Quando clicar em "Despesas", abre a tela de Despesas
-                    startActivity(new Intent(DashboardActivity.this, DespesasActivity.class));
+                    startActivity(new Intent(ReceitasActivity.this, DespesasActivity.class));
                     return true;
                 }
                 return false;
