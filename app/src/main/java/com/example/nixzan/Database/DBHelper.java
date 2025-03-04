@@ -3,14 +3,13 @@ package com.example.nixzan.Database;
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
-import android.util.Log;
 
 public class DBHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "finances.db";
     private static final int DATABASE_VERSION = 3;
 
-    // Nome das tabelas
+    // tabelas
     public static final String TABLE_USER = "user";
     public static final String TABLE_TRANSACAO = "transacao";
     public static final String TABLE_SALDO = "saldo";
@@ -67,7 +66,6 @@ public class DBHelper extends SQLiteOpenHelper {
             db.close();
         }
     }
-
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

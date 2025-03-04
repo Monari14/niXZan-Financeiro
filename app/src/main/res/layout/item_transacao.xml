@@ -29,7 +29,7 @@
         android:id="@+id/btnExcluir"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="#C8C8C8"
+        android:backgroundTint="#FFFFFF"
         android:text="Excluir"
         android:textColor="#050505"
         android:textSize="16sp"

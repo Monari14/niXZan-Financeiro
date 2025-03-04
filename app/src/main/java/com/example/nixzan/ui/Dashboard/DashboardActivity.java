@@ -18,8 +18,7 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class DashboardActivity extends AppCompatActivity {
-    private TextView textTotalGasto, textTotalGanho, textSaldo;
-
+    private TextView textTotalGasto, textTotalGanho, textSaldo, textViewNome;
     private DBHelper dbHelper;
 
     @Override
@@ -27,16 +26,15 @@ public class DashboardActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
 
-        String userName = getIntent().getStringExtra("userName");
-        TextView textViewNome = findViewById(R.id.textViewNome);
+        textViewNome = findViewById(R.id.textViewNome);
         textTotalGasto = findViewById(R.id.textTotalGasto);
         textTotalGanho = findViewById(R.id.textTotalGanho);
         textSaldo = findViewById(R.id.textSaldo);
         dbHelper = new DBHelper(this);
 
-        if (textViewNome != null) {
-            textViewNome.setText(userName != null ? userName : "");
-        }
+        // Buscar o nome do usuário no banco
+        String userName = getUserNameFromDB();
+        textViewNome.setText(userName != null ? userName : "Usuário");
 
         // Configurar a BottomNavigationView
         BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
@@ -65,10 +63,27 @@ public class DashboardActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         carregarTotalGasto();
         carregarTotalGanho();
         carregarSaldo();
     }
+
+    private String getUserNameFromDB() {
+        SQLiteDatabase db = dbHelper.getReadableDatabase();
+        String userName = null;
+
+        String query = "SELECT " + DBHelper.COLUMN_USER_NAME + " FROM " + DBHelper.TABLE_USER + " LIMIT 1";
+        Cursor cursor = db.rawQuery(query, null);
+
+        if (cursor.moveToFirst()) {
+            userName = cursor.getString(0);
+        }
+
+        cursor.close();
+        return userName;
+    }
+
     private void carregarTotalGasto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         double totalGasto = 0;
@@ -84,8 +99,7 @@ public class DashboardActivity extends AppCompatActivity {
 
         cursor.close();
 
-        // Atualiza o TextView com o total gasto formatado
-        textTotalGasto.setText(String.format("Gastos R$%.2f", totalGasto));
+        textTotalGasto.setText(String.format("-R$%.2f", totalGasto));
     }
 
     private void carregarTotalGanho() {
@@ -103,22 +117,18 @@ public class DashboardActivity extends AppCompatActivity {
 
         cursor.close();
 
-        textTotalGanho.setText(String.format("Ganhos R$%.2f", totalGanho));
+        textTotalGanho.setText(String.format("+R$%.2f", totalGanho));
     }
 
     private void carregarSaldo() {
         carregarTotalGanho();
         carregarTotalGasto();
 
-        // Obtem os valores já atualizados nos TextViews
-        double totalGanho = Double.parseDouble(textTotalGanho.getText().toString().replace("Ganhos R$", "").replace(",", "."));
-        double totalGasto = Double.parseDouble(textTotalGasto.getText().toString().replace("Gastos R$", "").replace(",", "."));
+        double totalGanho = Double.parseDouble(textTotalGanho.getText().toString().replace("+R$", "").replace(",", "."));
+        double totalGasto = Double.parseDouble(textTotalGasto.getText().toString().replace("-R$", "").replace(",", "."));
 
-        // Calcula o saldo
         double saldo = totalGanho - totalGasto;
 
-        // Atualiza o TextView do saldo
         textSaldo.setText(String.format("Saldo R$%.2f", saldo));
     }
-
 }

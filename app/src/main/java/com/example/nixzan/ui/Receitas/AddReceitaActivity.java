@@ -80,7 +80,7 @@ public class AddReceitaActivity extends AppCompatActivity {
 
         // Se descrição não for preenchida, deixa vazia
         if (descricao.isEmpty()) {
-            descricao = "Sem descrição";
+            descricao = " - ";
         }
 
         // Se categoria não for preenchida, define como "Outros"

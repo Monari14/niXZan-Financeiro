@@ -115,7 +115,7 @@ public class DespesasActivity extends AppCompatActivity {
         db.close();
 
         // Atualiza o texto do total gasto
-        textTotalGasto.setText(String.format("Total Gasto R$%.2f", totalGasto));
+        textTotalGasto.setText(String.format("-R$%.2f", totalGasto));
     }
 
     // Método para navegar até a tela de adicionar despesa

@@ -47,37 +47,42 @@
         android:id="@+id/textTotalGasto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="12dp"
-        android:text="Gastos R$0,00"
+        android:text="-R$0,00"
         android:textColor="#D00000"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
+        app:layout_constraintStart_toEndOf="@+id/textTotalGanho"
+        app:layout_constraintTop_toBottomOf="@+id/textSaldo" />
 
     <TextView
         android:id="@+id/textTotalGanho"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Ganhos R$0,00"
-        android:textColor="#43AB47"
-        android:textSize="20sp"
+        android:text="+R$0,00"
+        android:textColor="#4BC570"
+        android:textSize="30sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@+id/view4"
-        app:layout_constraintEnd_toEndOf="@+id/textSaldo"
-        app:layout_constraintHorizontal_bias="0.132"
+        app:layout_constraintEnd_toStartOf="@+id/textViewNome"
         app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
+        app:layout_constraintTop_toBottomOf="@+id/textSaldo" />
 
     <TextView
         android:id="@+id/textViewNome"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="36dp"
+        android:text="Nome Completo"
         android:textAlignment="textEnd"
         android:textSize="16sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view3" />
+        app:layout_constraintTop_toTopOf="@+id/textName2" />
 
     <TextView
         android:id="@+id/textName2"
@@ -87,21 +92,20 @@
         android:textSize="34sp"
         android:textStyle="bold|italic"
         app:layout_constraintBottom_toTopOf="@+id/view4"
-        app:layout_constraintEnd_toStartOf="@+id/textViewNome"
-        app:layout_constraintStart_toStartOf="@+id/view3"
+        app:layout_constraintStart_toStartOf="@+id/view4"
         app:layout_constraintTop_toTopOf="@+id/view3" />
 
     <TextView
         android:id="@+id/textSaldo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="20dp"
         android:text="Saldo R$0,00"
-        android:textSize="20sp"
+        android:textSize="30sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="@+id/view4"
-        app:layout_constraintHorizontal_bias="0.489"
         app:layout_constraintStart_toStartOf="@+id/view4"
-        app:layout_constraintTop_toTopOf="@+id/view4" />
+        app:layout_constraintTop_toTopOf="@+id/view" />
 
     <!-- Bottom Navigation -->
     <com.google.android.material.bottomnavigation.BottomNavigationView

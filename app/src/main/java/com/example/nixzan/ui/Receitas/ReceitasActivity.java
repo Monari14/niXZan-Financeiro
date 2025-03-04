@@ -108,7 +108,7 @@ public class ReceitasActivity extends AppCompatActivity {
         cursor.close();
         db.close();
 
-        textTotalGanho.setText(String.format("Total Ganho R$%.2f", totalGasto));
+        textTotalGanho.setText(String.format("+R$%.2f", totalGasto));
     }
 
     private void navigateToAddReceitas() {

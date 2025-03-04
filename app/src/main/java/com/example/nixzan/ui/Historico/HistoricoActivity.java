@@ -111,7 +111,7 @@ public class HistoricoActivity extends AppCompatActivity {
         cursor.close();
 
         // Atualiza o TextView com o total gasto formatado
-        textTotalGasto.setText(String.format("Total R$%.2f", totalGasto));
+        textTotalGasto.setText(String.format("-R$%.2f", totalGasto));
     }
 
     public void carregarTotalGanho() {
@@ -129,6 +129,6 @@ public class HistoricoActivity extends AppCompatActivity {
 
         cursor.close();
 
-        textTotalGanho.setText(String.format("Total R$%.2f", totalGanho));
+        textTotalGanho.setText(String.format("+R$%.2f", totalGanho));
     }
 }
