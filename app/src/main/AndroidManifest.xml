@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    package="com.example.nixzan">
+
+    <application
+        android:allowBackup="true"
+        android:dataExtractionRules="@xml/data_extraction_rules"
+        android:fullBackupContent="@xml/backup_rules"
+        android:icon="@mipmap/ic_launcher_129"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_129"
+        android:supportsRtl="true"
+        android:theme="@style/Theme.NiXZan"
+        tools:targetApi="31">
+
+        <activity
+            android:name=".MainActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".ui.Dashboard.DashboardActivity"
+            android:exported="true">
+        </activity>
+        <activity
+            android:name=".ui.Receitas.ReceitasActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Receitas.AddReceitaActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.Historico.HistoricoActivity"
+            android:exported="true" />
+
+        <activity
+            android:name=".ui.Despesas.DespesasActivity"
+            android:exported="true" />
+        <activity
+            android:name=".ui.Despesas.AddDespesaActivity"
+            android:exported="true" />
+
+    </application>
+
+</manifest>

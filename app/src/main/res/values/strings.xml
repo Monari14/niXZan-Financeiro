@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">niXZan</string>
+        <string-array name="categorias_array">
+            <item>Pix</item>
+            <item>Dinheiro</item>
+            <item>Trabalho</item>
+            <item>Outro</item>
+        </string-array>
+</resources>
