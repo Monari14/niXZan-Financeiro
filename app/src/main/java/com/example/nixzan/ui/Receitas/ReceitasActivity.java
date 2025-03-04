@@ -1,5 +1,6 @@
 package com.example.nixzan.ui.Receitas;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -82,7 +83,6 @@ public class ReceitasActivity extends AppCompatActivity {
             String data = cursor.getString(cursor.getColumnIndexOrThrow("data"));
             String tipo = cursor.getString(cursor.getColumnIndexOrThrow("despesaOuReceita"));
 
-            // Adiciona a transação à lista
             transacoes.add(new Transacao(id, descricao, valor, data, tipo));
         }
 
@@ -93,9 +93,9 @@ public class ReceitasActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private void carregarTotalGanho() {
+    public void carregarTotalGanho() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
-        double totalGasto = 0;
+        double totalGanho = 0;
 
         String query = "SELECT SUM(valorTransacao) FROM " + DBHelper.TABLE_TRANSACAO +
                 " WHERE despesaOuReceita = 'receita'";
@@ -103,12 +103,12 @@ public class ReceitasActivity extends AppCompatActivity {
         Cursor cursor = db.rawQuery(query, null);
 
         if (cursor.moveToFirst()) {
-            totalGasto = cursor.getDouble(0);
+            totalGanho = cursor.getDouble(0);
         }
         cursor.close();
         db.close();
 
-        textTotalGanho.setText(String.format("+R$%.2f", totalGasto));
+        textTotalGanho.setText(String.format("+R$%.2f", totalGanho));
     }
 
     private void navigateToAddReceitas() {

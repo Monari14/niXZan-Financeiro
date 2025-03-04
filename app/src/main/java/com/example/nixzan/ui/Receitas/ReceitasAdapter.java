@@ -1,6 +1,8 @@
 package com.example.nixzan.ui.Receitas;
 
 import android.content.Context;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -21,6 +23,7 @@ public class ReceitasAdapter extends BaseAdapter {
     private List<Transacao> transacoes;
     private DBHelper dbHelper;
     private Runnable atualizarValores;
+    private TextView textTotalGanho;
 
     public ReceitasAdapter(Context context, List<Transacao> transacoes, DBHelper dbHelper, Runnable atualizarValores) {
         this.context = context;
@@ -68,9 +71,9 @@ public class ReceitasAdapter extends BaseAdapter {
 
             atualizarValores.run();
 
-            if (context instanceof HistoricoActivity) {
-                HistoricoActivity historicoActivity = (HistoricoActivity) context;
-                historicoActivity.carregarTotalGanho();
+            if (context instanceof ReceitasActivity) {
+                ReceitasActivity receitasActivity = (ReceitasActivity) context;
+                receitasActivity.carregarTotalGanho();
             }
         });
         return convertView;

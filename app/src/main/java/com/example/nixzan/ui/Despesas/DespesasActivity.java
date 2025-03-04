@@ -98,7 +98,7 @@ public class DespesasActivity extends AppCompatActivity {
         listView.setAdapter(adapter);
     }
 
-    private void carregarTotalGasto() {
+    public void carregarTotalGasto() {
         SQLiteDatabase db = dbHelper.getReadableDatabase();
         double totalGasto = 0;
 

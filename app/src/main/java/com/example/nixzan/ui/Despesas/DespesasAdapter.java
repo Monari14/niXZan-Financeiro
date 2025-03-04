@@ -68,9 +68,9 @@ public class DespesasAdapter extends BaseAdapter {
 
             atualizarValores.run();
 
-            if (context instanceof HistoricoActivity) {
-                HistoricoActivity historicoActivity = (HistoricoActivity) context;
-                historicoActivity.carregarTotalGasto();
+            if (context instanceof DespesasActivity) {
+                DespesasActivity despesasActivity = (DespesasActivity) context;
+                despesasActivity.carregarTotalGasto();
             }
         });
         return convertView;
