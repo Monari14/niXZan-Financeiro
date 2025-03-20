@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        //a
         // Inicializar os elementos da tela
         editNome = findViewById(R.id.editNome);
         btProsseguir = findViewById(R.id.btProsseguir);
