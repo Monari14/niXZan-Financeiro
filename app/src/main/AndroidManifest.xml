@@ -28,21 +28,7 @@
             android:exported="true">
         </activity>
         <activity
-            android:name=".ui.Receitas.ReceitasActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.Receitas.AddReceitaActivity"
-            android:exported="true" />
-
-        <activity
             android:name=".ui.Historico.HistoricoActivity"
-            android:exported="true" />
-
-        <activity
-            android:name=".ui.Despesas.DespesasActivity"
-            android:exported="true" />
-        <activity
-            android:name=".ui.Despesas.AddDespesaActivity"
             android:exported="true" />
 
     </application>
