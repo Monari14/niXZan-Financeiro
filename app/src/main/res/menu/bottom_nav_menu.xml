@@ -1,23 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
-<item
-    android:id="@+id/nav_dashboard"
-    android:icon="@drawable/ic_dashboard_black_24dp"
-    android:title="Dashboard" />
-
     <item
-        android:id="@+id/nav_receitas"
-        android:icon="@android:drawable/stat_sys_download"
-        android:title="Receitas" />
-
-    <item
-        android:id="@+id/nav_despesas"
-        android:icon="@android:drawable/stat_sys_upload"
-        android:title="Despesas" />
+        android:id="@+id/nav_dashboard"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="Senhas" />
 
     <item
         android:id="@+id/nav_historico"
         android:icon="@android:drawable/ic_menu_today"
         android:title="Histórico" />
-
 </menu>

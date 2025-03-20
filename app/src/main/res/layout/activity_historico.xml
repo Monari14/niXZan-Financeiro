@@ -6,36 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".ui.Historico.HistoricoActivity">
 
-    <!-- Total Ganho -->
-
-    <!-- Total Gasto -->
-
-    <!-- Título do Histórico -->
-
-    <TextView
-        android:id="@+id/textTotalGanho"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+R$0,00"
-        android:textColor="#43AB47"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textName5"
-        app:layout_constraintEnd_toStartOf="@+id/textName5"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <TextView
-        android:id="@+id/textTotalGasto"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="-R$0,00"
-        android:textColor="#E33838"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textName5"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textName5" />
-
-    <!-- Nome (subtítulo ou nome do usuário) -->
-
     <TextView
         android:id="@+id/textName5"
         android:layout_width="wrap_content"

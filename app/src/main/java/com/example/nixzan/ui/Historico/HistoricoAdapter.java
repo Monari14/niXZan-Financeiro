@@ -1,7 +1,6 @@
-package com.example.nixzan.ui.Despesas;
+package com.example.nixzan.ui.Historico;
 
 import android.content.Context;
-import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,34 +8,33 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.nixzan.Database.DBHelper;
-import com.example.nixzan.Model.Transacao;
+import com.example.nixzan.Model.Historico;
 import com.example.nixzan.R;
-import com.example.nixzan.ui.Historico.HistoricoActivity;
 import com.google.android.material.button.MaterialButton;
 
 import java.util.List;
 
-public class DespesasAdapter extends BaseAdapter {
+public class HistoricoAdapter extends BaseAdapter {
     private Context context;
-    private List<Transacao> transacoes;
+    private List<Historico> historicos;
     private DBHelper dbHelper;
     private Runnable atualizarValores;
 
-    public DespesasAdapter(Context context, List<Transacao> transacoes, DBHelper dbHelper, Runnable atualizarValores) {
+    public HistoricoAdapter(Context context, List<Historico> transacoes, DBHelper dbHelper, Runnable atualizarValores) {
         this.context = context;
-        this.transacoes = transacoes;
+        this.historicos = historicos;
         this.dbHelper = dbHelper;
         this.atualizarValores = atualizarValores;
     }
 
     @Override
     public int getCount() {
-        return transacoes.size();
+        return historicos.size();
     }
 
     @Override
     public Object getItem(int position) {
-        return transacoes.get(position);
+        return historicos.get(position);
     }
 
     @Override
@@ -51,28 +49,20 @@ public class DespesasAdapter extends BaseAdapter {
         }
 
         TextView descricao = convertView.findViewById(R.id.descricao);
-        TextView valor = convertView.findViewById(R.id.valor);
         MaterialButton excluirBtn = convertView.findViewById(R.id.btnExcluir);
 
-        Transacao transacao = transacoes.get(position);
-        if ("despesa".equalsIgnoreCase(transacao.getDespesaOuReceita())) {
-            descricao.setText(transacao.getDescricao() + " | " + transacao.getData());
-            valor.setText(String.format("R$ %.2f", transacao.getValor()));
-            convertView.setBackgroundColor(Color.parseColor("#ed7171"));
-        }
+        Historico hist = historicos.get(position);
+        descricao.setText(hist.getSenha());
 
         excluirBtn.setOnClickListener(v -> {
-            dbHelper.deletarTransacao(transacao.getId());
-            transacoes.remove(position);
+            dbHelper.deletarSenha(hist.getId());
+            historicos.remove(position);
             notifyDataSetChanged();
 
             atualizarValores.run();
-
-            if (context instanceof DespesasActivity) {
-                DespesasActivity despesasActivity = (DespesasActivity) context;
-                despesasActivity.carregarTotalGasto();
-            }
         });
+
+
         return convertView;
     }
 }
