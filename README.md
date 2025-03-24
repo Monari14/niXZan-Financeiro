@@ -10,7 +10,7 @@
 ---
 
 ## 📜 **Descrição**  
-  **niXZan - List** é um aplicativo para **Android**, desenvolvido em **Java**, que permite ao usuário gerenciar suas **receitas** e **despesas**. O app armazena dados localmente usando **SQLite**, garantindo que as informações, como ganhos e gastos, sejam preservadas mesmo após o fechamento do aplicativo.
+  **niXZan - Financeiro** é um aplicativo para **Android**, desenvolvido em **Java**, que permite ao usuário gerenciar suas **receitas** e **despesas**. O app armazena dados localmente usando **SQLite**, garantindo que as informações, como ganhos e gastos, sejam preservadas mesmo após o fechamento do aplicativo.
 
 ---
 
